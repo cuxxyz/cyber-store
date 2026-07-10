@@ -87,7 +87,6 @@ export function GlobePulse({
       baseColor: [0.5, 0.5, 0.5],
       markerColor: [0.2, 0.8, 0.9],
       glowColor: [0.05, 0.05, 0.05],
-      markerElevation: 0,
       markers: markers.map((m) => ({ location: m.location, size: 0.025, id: m.id })),
       arcs: [], arcColor: [0.3, 0.85, 0.95],
       arcWidth: 0.5, arcHeight: 0.25, opacity: 0.7,
@@ -140,4 +139,4 @@ export function GlobePulse({
       />
     </div>
   )
-    }
+      }
