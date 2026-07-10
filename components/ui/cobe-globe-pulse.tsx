@@ -80,25 +80,23 @@ export function GlobePulse({
       if (width === 0 || globe) return
 
       globe = createGlobe(canvas, {
-      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
-      width, height: width,
-      phi: 0, theta: 0.2, dark: 1, diffuse: 1.5,
-      mapSamples: 16000, mapBrightness: 10,
-      baseColor: [0.5, 0.5, 0.5],
-      markerColor: [0.2, 0.8, 0.9],
-      glowColor: [0.05, 0.05, 0.05],
-      markers: markers.map((m) => ({ location: m.location, size: 0.025, id: m.id })),
-      arcs: [], arcColor: [0.3, 0.85, 0.95],
-      arcWidth: 0.5, arcHeight: 0.25, opacity: 0.7,
-    })
-    function animate() {
-      if (!isPausedRef.current) phi += speed
-      globe!.update({
-        phi: phi + phiOffsetRef.current + dragOffset.current.phi,
-        theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+        width, height: width,
+        phi: 0, theta: 0.2, dark: 1, diffuse: 1.5,
+        mapSamples: 16000, mapBrightness: 10,
+        baseColor: [0.5, 0.5, 0.5],
+        markerColor: [0.2, 0.8, 0.9],
+        glowColor: [0.05, 0.05, 0.05],
+        markers: markers.map((m) => ({ location: m.location, size: 0.025, id: m.id })),
       })
-      animationId = requestAnimationFrame(animate)
-    }
+      function animate() {
+        if (!isPausedRef.current) phi += speed
+        globe!.update({
+          phi: phi + phiOffsetRef.current + dragOffset.current.phi,
+          theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
+        })
+        animationId = requestAnimationFrame(animate)
+      }
       animate()
       setTimeout(() => canvas && (canvas.style.opacity = "1"))
     }
