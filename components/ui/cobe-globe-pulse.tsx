@@ -88,13 +88,17 @@ export function GlobePulse({
         markerColor: [0.2, 0.8, 0.9],
         glowColor: [0.05, 0.05, 0.05],
         markers: markers.map((m) => ({ location: m.location, size: 0.025, id: m.id })),
+        onRender: () => {} 
       })
+      
       function animate() {
         if (!isPausedRef.current) phi += speed
-        globe!.update({
-          phi: phi + phiOffsetRef.current + dragOffset.current.phi,
-          theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
-        })
+        if (globe) {
+          globe.update({
+            phi: phi + phiOffsetRef.current + dragOffset.current.phi,
+            theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
+          })
+        }
         animationId = requestAnimationFrame(animate)
       }
       animate()
@@ -137,4 +141,4 @@ export function GlobePulse({
       />
     </div>
   )
-      }
+    }
